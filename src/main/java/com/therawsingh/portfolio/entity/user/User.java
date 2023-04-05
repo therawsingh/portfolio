@@ -1,10 +1,9 @@
-package com.therawsingh.portfolio.entity;
+package com.therawsingh.portfolio.entity.user;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
-import java.security.Provider;
 
 @Entity
 public class User {

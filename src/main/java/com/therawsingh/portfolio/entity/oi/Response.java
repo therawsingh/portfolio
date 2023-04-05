@@ -8,14 +8,17 @@ import java.util.ArrayList;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Response {
 
+    @JsonProperty("data")
     private ArrayList<Data> data;
-    private TotalCE CE;
-    private TotalPE PE;
+    @JsonProperty("CE")
+    private TotalPosition CE;
+    @JsonProperty("PE")
+    private TotalPosition PE;
 
     public Response() {
     }
 
-    public Response(ArrayList<Data> data, TotalCE CE, TotalPE PE) {
+    public Response(ArrayList<Data> data, TotalPosition CE, TotalPosition PE) {
         this.data = data;
         this.CE = CE;
         this.PE = PE;
@@ -29,19 +32,19 @@ public class Response {
         this.data = data;
     }
 
-    public TotalCE getCE() {
+    public TotalPosition getCE() {
         return CE;
     }
 
-    public void setCE(TotalCE CE) {
+    public void setCE(TotalPosition CE) {
         this.CE = CE;
     }
 
-    public TotalPE getPE() {
+    public TotalPosition getPE() {
         return PE;
     }
 
-    public void setPE(TotalPE PE) {
+    public void setPE(TotalPosition PE) {
         this.PE = PE;
     }
 }

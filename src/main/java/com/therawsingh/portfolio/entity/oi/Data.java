@@ -6,15 +6,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Data {
 
+    @JsonProperty("strikePrice")
     private String strikePrice;
+    @JsonProperty("expiryDate")
     private String expiryDate;
-    private CE CE;
-    private PE PE;
+    @JsonProperty("CE")
+    private Position CE;
+    @JsonProperty("PE")
+    private Position PE;
 
     public Data() {
     }
 
-    public Data(String strikePrice, String expiryDate, com.therawsingh.portfolio.entity.oi.CE CE, com.therawsingh.portfolio.entity.oi.PE PE) {
+    public Data(String strikePrice, String expiryDate, Position CE, Position PE) {
         this.strikePrice = strikePrice;
         this.expiryDate = expiryDate;
         this.CE = CE;
@@ -37,19 +41,19 @@ public class Data {
         this.expiryDate = expiryDate;
     }
 
-    public com.therawsingh.portfolio.entity.oi.CE getCE() {
+    public Position getCE() {
         return CE;
     }
 
-    public void setCE(com.therawsingh.portfolio.entity.oi.CE CE) {
+    public void setCE(Position Position) {
         this.CE = CE;
     }
 
-    public com.therawsingh.portfolio.entity.oi.PE getPE() {
+    public Position getPE() {
         return PE;
     }
 
-    public void setPE(com.therawsingh.portfolio.entity.oi.PE PE) {
+    public void setPE(Position PE) {
         this.PE = PE;
     }
 }

@@ -4,17 +4,21 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CE {
+public class Position {
 
+    @JsonProperty("strikePrice")
     private int strikePrice;
+    @JsonProperty("expiryDate")
     private String expiryDate;
+    @JsonProperty("openInterest")
     private long openInterest;
+    @JsonProperty("changeinOpenInterest")
     private long changeinOpenInterest;
 
-    public CE() {
+    public Position() {
     }
 
-    public CE(int strikePrice, String expiryDate, long openInterest, long changeinOpenInterest) {
+    public Position(int strikePrice, String expiryDate, long openInterest, long changeinOpenInterest) {
         this.strikePrice = strikePrice;
         this.expiryDate = expiryDate;
         this.openInterest = openInterest;

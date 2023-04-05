@@ -20,7 +20,8 @@ public class SecurityConfig{
                 .requestMatchers("/home/**")
                 .permitAll()
                 .requestMatchers("/tools/**")
-                .authenticated()
+                .permitAll()
+                //.authenticated()
                 .and()
                 .oauth2Login()
                 ;

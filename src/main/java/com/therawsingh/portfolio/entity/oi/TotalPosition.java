@@ -1,17 +1,19 @@
 package com.therawsingh.portfolio.entity.oi;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class TotalPosition {
 
-public class TotalCE {
-
+    @JsonProperty("totOI")
     private long totOI;
 
-    public TotalCE() {
+    public TotalPosition() {
     }
 
-    public TotalCE(long totOI) {
+    public TotalPosition(long totOI) {
         this.totOI = totOI;
     }
 
