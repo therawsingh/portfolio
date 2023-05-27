@@ -1,9 +1,7 @@
 package com.therawsingh.portfolio.entity.user;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-
+import com.therawsingh.portfolio.entity.todoList.TodoList;
+import jakarta.persistence.*;
 
 @Entity
 public class User {
@@ -11,10 +9,56 @@ public class User {
     @Id
     @GeneratedValue
     private Long id;
-
     private String name;
-
     private String email;
 
+    @ManyToOne
+    @JoinColumn(name = "todo_list_id")
+    private TodoList todoList;
 
+    public TodoList getTodoList() {
+        return todoList;
+    }
+
+    public void setTodoList(TodoList todoList) {
+        this.todoList = todoList;
+    }
+
+    public User() {
+    }
+
+    public User(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
+    public User(Long id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
