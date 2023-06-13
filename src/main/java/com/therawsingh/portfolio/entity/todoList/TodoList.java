@@ -10,7 +10,7 @@ import java.util.List;
 public class TodoList {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
     @ManyToOne

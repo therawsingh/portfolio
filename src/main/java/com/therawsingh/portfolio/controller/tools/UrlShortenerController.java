@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 
 @RestController
@@ -25,10 +27,12 @@ public class UrlShortenerController {
         return "url";
     }
 
+    @CrossOrigin
     @PostMapping("/shorten")
     public ResponseEntity<String> shortenUrl(@RequestBody String longUrl){
 
-        String key = Hashing.murmur3_32_fixed().hashString(longUrl, StandardCharsets.UTF_8).toString();
+
+        String key = Hashing.murmur3_32_fixed().hashString(longUrl.replace("\"", ""), StandardCharsets.UTF_8).toString();
 
         if(urlRepository.findByShortUrl(key) != null){
 
@@ -37,7 +41,7 @@ public class UrlShortenerController {
         }
 
         Url url = new Url();
-        url.setLongUrl(longUrl);
+        url.setLongUrl(longUrl.replace("\"", ""));
         url.setShortUrl(key);
         urlRepository.save(url);
 
@@ -45,12 +49,28 @@ public class UrlShortenerController {
 
     }
 
+    @CrossOrigin
     @GetMapping("/{shortUrl}")
-    public ResponseEntity redirectToOriginalUrl(@PathVariable String shortUrl) {
+    public RedirectView redirectToOriginalUrl(@PathVariable String shortUrl) throws URISyntaxException {
 
         Url url = urlRepository.findByShortUrl(shortUrl);
 
-        return ResponseEntity.ok(url);
+        RedirectView redirectView = new RedirectView();
+
+        if(url!= null){
+            redirectView.setUrl(url.getLongUrl());
+        }
+
+        else{
+            redirectView.setUrl("http://localhost:8080/errorHandler/notFound");
+        }
+        
+        return redirectView;
+
+
+        //return ResponseEntity.status(HttpStatus.SEE_OTHER).location(uri).build();
+
+        //return ResponseEntity.ok(url);
 
     }
 

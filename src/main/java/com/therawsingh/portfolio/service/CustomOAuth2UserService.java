@@ -14,23 +14,4 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Override
-    public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
-
-        System.out.println("in load user");
-
-        OAuth2User oUser = super.loadUser(userRequest);
-        User user = new User(oUser.getAttribute("name"), oUser.getAttribute("email"));
-
-        System.out.println("user object created");
-
-        userRepository.save(user);
-
-        System.out.println("user data persisted");
-
-        return oUser;
-    }
 }
